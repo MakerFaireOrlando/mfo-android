@@ -1,0 +1,79 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ProjectDetailActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+    <LinearLayout
+        android:id="@+id/project_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ProjectDetailActivity"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/projectImageHeader"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/titleText"
+            style="@style/ItemDetailTitle"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_height="2dp"
+            android:background="@color/pressed_ommf" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/location"
+            style="@style/ItemDetailSubtitle"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/organization"
+            style="@style/ItemDetailSubtitle"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:linksClickable="true"
+            android:id="@+id/website"
+            style="@style/LinkItem"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video"
+            android:id="@+id/youtubebutton"
+            android:layout_gravity="left"
+            android:layout_marginLeft="16dp"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/descriptionText"
+            style="@style/ListItemTitle"/>
+
+    </LinearLayout>
+</ScrollView>

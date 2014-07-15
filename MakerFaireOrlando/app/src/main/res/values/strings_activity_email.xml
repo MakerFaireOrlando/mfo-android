@@ -1,0 +1,23 @@
+<resources>
+        <string name="title_activity_email">Sign Up</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+
+    <string name="action_sign_in_register"><b>Sign Up</b></string>
+    <string name="action_sign_in_short">Sign up</string>
+
+    <string name="action_forgot_password">Recover lost password</string>
+
+    <string name="login_progress_signing_in">Signing up&#8230;</string>
+
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="email_title">Welcome to the Orlando Mini Maker Faire 2013 mobile application!</string>
+    <string name="email_info">In this app you will find information on #OMMF2013 including a list of Makers and their details, an event schedule, event maps, and more.We will have giveaways throughout the event for prizes from our sponsors and community partners.</string>
+    <string name="email_enter">Please enter your email address to be entered into these giveaways.</string>
+    <string name="skip_button">Skip</string>
+</resources>
