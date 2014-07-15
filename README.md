@@ -1,4 +1,4 @@
-Maker Faire Orlando Android Application
+Maker Faire Orlando Android
 ===========
 
 Android application for the 2014 Maker Faire in Orlando
