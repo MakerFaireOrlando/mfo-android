@@ -118,6 +118,8 @@ public class EventsFragment extends ListFragment {
         mCallback.onEventSelected(position);
     }
 
+
+    // TODO pass specific event detail to detail view rather than grab all events.
     public static List<Items> getmCalendarItems(){
         return mCalendarItems;
     }

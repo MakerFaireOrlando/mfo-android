@@ -288,6 +288,7 @@ public class MakersFragment extends ListFragment
         }
     }
 
+    // TODO pass specific maker detail to detail view rather than grab all makers.
     public static List<ProjectDetail> getmAcceptedMakers() {
        return mAcceptedMakers;
     }
