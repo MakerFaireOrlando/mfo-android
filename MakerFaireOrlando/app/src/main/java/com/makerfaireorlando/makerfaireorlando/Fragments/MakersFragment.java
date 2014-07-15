@@ -184,6 +184,7 @@ public class MakersFragment extends ListFragment
 
         public void setAcceptedMakers(List<ProjectDetail> mProjects) {
             this.mProjects = mProjects;
+            originalData = this.mProjects;
         }
 
         public int getCount() {
