@@ -223,14 +223,14 @@ public class MakersFragment extends ListFragment
 
             holder.textTitle.setText(mProjects.get(position).project_name);
 
-            holder.textSubTitle.setText(mProjects.get(position).location);
+            // TODO This should probably be location when they are available
+            holder.textSubTitle.setText(mProjects.get(position).organization);
 
             //touch events
             holder.primaryTouchTargetView.setEnabled(true);
             holder.primaryTouchTargetView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     mCallback.onMakerSelected(mProjects.get(mPosition).project_name);
                 }
             });

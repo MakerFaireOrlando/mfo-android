@@ -18,13 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.makerfaireorlando.makerfaireorlando.Settings"
-            android:label="Settings" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.makerfaireorlando.app.MainActivity" />
-        </activity>
-        <activity
             android:name="com.makerfaireorlando.makerfaireorlando.EmailActivity"
             android:label="@string/title_activity_email"
             android:windowSoftInputMode="adjustResize|stateVisible" >

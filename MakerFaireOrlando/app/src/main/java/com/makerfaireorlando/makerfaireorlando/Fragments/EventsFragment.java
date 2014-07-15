@@ -2,15 +2,12 @@ package com.makerfaireorlando.makerfaireorlando.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,7 +43,6 @@ public class EventsFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         this.setHasOptionsMenu(true);
 
-        Log.i("what is ", "happening");
         try{
             getItemList();
         }catch(JSONException e){
@@ -69,19 +65,19 @@ public class EventsFragment extends ListFragment {
         });
     }
 
+    @SuppressWarnings("unchecked")
     public void parseItemList(String jsonString){
         try {
             Gson gson = new Gson();
             Calendar calendar = gson.fromJson(jsonString, Calendar.class);
             mCalendarItems = calendar.items;
-            Collections.sort(mCalendarItems, new Comparator() {
 
+            Collections.sort(mCalendarItems, new Comparator() {
                 public int compare(Object o1, Object o2) {
                     Items p1 = (Items) o1;
                     Items p2 = (Items) o2;
                     return p1.start.dateTime.compareToIgnoreCase(p2.start.dateTime);
                 }
-
             });
 
             String[] mCalTitles = new String[mCalendarItems.size()];

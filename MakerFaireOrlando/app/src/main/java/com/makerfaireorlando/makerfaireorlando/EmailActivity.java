@@ -138,9 +138,7 @@ public class EmailActivity extends Activity {
 
 
     public void postData(String email) {
-
         String fullUrl = "https://docs.google.com/forms/d/17oLV-J1wLUmlTsXRKUqWew8EqbZAwdOqnIvb91O7MMQ/formResponse";
-       //String data = "entry_669010626=" + URLEncoder.encode(email);
 
         RequestParams params = new RequestParams("entry_669010626", email);
 

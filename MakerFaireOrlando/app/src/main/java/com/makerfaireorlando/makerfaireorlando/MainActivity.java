@@ -60,10 +60,7 @@ public class MainActivity extends ActionBarActivity
     private String[] titles;
     private String[] classes;
 
-    private static String mCacheJSONString;
 
-    private static ProjectsList projectsList;
-    private static List<ProjectDetail> acceptedMakers;
     private static List<String> mCategories;
 
     private String mCurCheckPosition = "com.makerfaireorlando.makerfaireorlando.MainActivity";
@@ -83,19 +80,10 @@ public class MainActivity extends ActionBarActivity
         if (savedInstanceState != null) {
             // Restore last state for checked position.
             mCurCheckPosition = savedInstanceState.getString("curChoice");
-        }else{
-            /*
-            try{
-                //getItemList();
-            }catch(JSONException e){
-                Log.wtf("Main Activity", "Failed to get Item List");
-            }
-            */
         }
 
         setContentView(R.layout.activity_main);
 
-        //getSupportActionBar().setLogo(R.drawable.ic_actionbar);
         mTitle = mDrawerTitle = getTitle();
         titles = getResources().getStringArray(R.array.selection_array);
 
@@ -140,8 +128,6 @@ public class MainActivity extends ActionBarActivity
                     invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 }
                 //getSupportFragmentManager().findFragmentByTag(mCurCheckPosition).setMenuVisibility(false);
-
-
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -167,6 +153,8 @@ public class MainActivity extends ActionBarActivity
             prefs.edit().putBoolean("firstrun", false).commit();
 
         }
+        // Previous way we cached data
+        // may want to implement this for makers and events
         /*
         try{
             FileInputStream fis = this.openFileInput("json_file");
@@ -200,6 +188,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        // caching
         /*
         outState.putString("curChoice", mCurCheckPosition);
         String FILENAME = "json_file";
@@ -246,7 +235,7 @@ public class MainActivity extends ActionBarActivity
         }
         // Handle action buttons
         switch(item.getItemId()) {
-        case R.id.action_settings:
+        case R.id.action_sign_up:
             Intent intent = new Intent(this, EmailActivity.class);
             startActivity(intent);
             return true;
@@ -379,14 +368,6 @@ public class MainActivity extends ActionBarActivity
         // Commit the transaction
         transaction.commit();
 
-    }
-
-    public static ProjectsList getProjectList(){
-        return projectsList;
-    }
-
-    public static List<ProjectDetail> getAcceptedMakers(){
-        return acceptedMakers;
     }
 
     public static List<String> getmCategories(){
