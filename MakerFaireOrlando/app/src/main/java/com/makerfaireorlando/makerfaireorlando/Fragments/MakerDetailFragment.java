@@ -59,7 +59,7 @@ public class MakerDetailFragment extends Fragment {
         title.setText(projectDetail.project_name);
 
         TextView location = (TextView) rootView.findViewById(R.id.location);
-        if(!projectDetail.location.equals("")){
+        if(projectDetail.location != null){
             location.setText(projectDetail.location);
         }else{
             location.setVisibility(View.GONE);
@@ -67,7 +67,7 @@ public class MakerDetailFragment extends Fragment {
 
 
         TextView webSite = (TextView) rootView.findViewById(R.id.website);
-        if(!projectDetail.web_site.equals("")){
+        if(projectDetail.web_site != null){
             webSite.setText(Html.fromHtml(projectDetail.web_site));
         }else{
             webSite.setVisibility(View.GONE);
@@ -89,7 +89,7 @@ public class MakerDetailFragment extends Fragment {
 
         TextView organization = (TextView) rootView.findViewById(R.id.organization);
 
-        if(!projectDetail.organization.equals("")){
+        if(projectDetail.organization != null){
             organization.setText(projectDetail.organization);
         }else{
             organization.setVisibility(View.GONE);
@@ -99,7 +99,7 @@ public class MakerDetailFragment extends Fragment {
         descriptionView.setText(projectDetail.description);
 
         Button youTubeButton = (Button) rootView.findViewById(R.id.youtubebutton);
-        if (!projectDetail.video_link.equals("")) {
+        if (projectDetail.video_link != null) {
             youTubeButton.setVisibility(View.VISIBLE);
             youTubeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
