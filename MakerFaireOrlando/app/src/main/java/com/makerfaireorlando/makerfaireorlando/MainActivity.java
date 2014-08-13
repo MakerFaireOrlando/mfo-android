@@ -42,8 +42,6 @@ import com.makerfaireorlando.makerfaireorlando.Fragments.EventsFragment;
 import com.makerfaireorlando.makerfaireorlando.Fragments.MakerDetailFragment;
 import com.makerfaireorlando.makerfaireorlando.Fragments.MakersFragment;
 import com.makerfaireorlando.makerfaireorlando.Fragments.MapFragment;
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectsList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +101,7 @@ public class MainActivity extends ActionBarActivity
         // enable ActionBar app icon to behave as action ClickListenerto toggle nav drawer
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
@@ -148,7 +146,7 @@ public class MainActivity extends ActionBarActivity
         super.onResume();  // Always call the superclass method first
         if (prefs.getBoolean("firstrun", true)) {
             mDrawerLayout.openDrawer(mDrawerList);
-            Intent intent = new Intent(this, EmailActivity.class);
+            Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
             prefs.edit().putBoolean("firstrun", false).commit();
 
@@ -236,7 +234,7 @@ public class MainActivity extends ActionBarActivity
         // Handle action buttons
         switch(item.getItemId()) {
         case R.id.action_sign_up:
-            Intent intent = new Intent(this, EmailActivity.class);
+            Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
             return true;
         case android.R.id.home:
@@ -320,7 +318,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggls
+        // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
@@ -329,12 +327,9 @@ public class MainActivity extends ActionBarActivity
      * Callbacks for fragments
      */
     public void onMakerSelected(String item) {
-        String name = item;
-        // The user selected the headline of an article from the HeadlinesFragment
-        // Do something here to display that article
         MakerDetailFragment newFragment = new MakerDetailFragment();
         Bundle args = new Bundle();
-        args.putString("Name", name);
+        args.putString("Name", item);
         newFragment.setArguments(args);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -346,7 +341,6 @@ public class MainActivity extends ActionBarActivity
         mDrawerToggle.setDrawerIndicatorEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Commit the transaction
         transaction.commit();
     }
 
@@ -365,9 +359,7 @@ public class MainActivity extends ActionBarActivity
         mDrawerToggle.setDrawerIndicatorEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Commit the transaction
         transaction.commit();
-
     }
 
     public static List<String> getmCategories(){
@@ -377,9 +369,8 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         //turn on the Navigation Drawer image; this is called in the LowerLevelFragments
         mDrawerToggle.setDrawerIndicatorEnabled(true);
-        //getSupportFragmentManager().popBackStack();
     }
+
 }

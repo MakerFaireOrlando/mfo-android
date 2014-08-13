@@ -22,7 +22,7 @@ import org.apache.http.Header;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class EmailActivity extends Activity {
+public class SignUpActivity extends Activity {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */

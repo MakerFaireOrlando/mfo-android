@@ -84,6 +84,13 @@ public class MakersFragment extends ListFragment
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         searchView.setOnQueryTextListener(this);
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //hide logo
+
+            }
+        });
     }
 
     public boolean onQueryTextChange(String newText) {
