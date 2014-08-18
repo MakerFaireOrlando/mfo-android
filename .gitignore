@@ -33,3 +33,4 @@ build/
 
 # Ignore keys file
 keys.xml
+*.iml
