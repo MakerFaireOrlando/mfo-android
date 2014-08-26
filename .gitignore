@@ -1,3 +1,6 @@
+.DS_Store
+MakerFaireOrlando/app/app.iml
+
 #built application files
 *.apk
 *.ap_
