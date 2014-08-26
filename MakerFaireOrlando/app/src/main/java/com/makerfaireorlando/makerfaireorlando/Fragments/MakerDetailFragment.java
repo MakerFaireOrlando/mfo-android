@@ -39,8 +39,10 @@ public class MakerDetailFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        new DownloadImageTask((ImageView) rootView.findViewById(R.id.projectImageHeader))
-                .execute(projectDetail.photo_link);
+        if(projectDetail.photo_link != null) {
+            new DownloadImageTask((ImageView) rootView.findViewById(R.id.projectImageHeader))
+                    .execute(projectDetail.photo_link);
+        }
 
         TextView title = (TextView) rootView.findViewById(R.id.titleText);
         title.setText(projectDetail.project_name);

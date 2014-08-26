@@ -151,7 +151,7 @@ public class MakersFragment extends ListFragment
                 public int compare(Object o1, Object o2) {
                     ProjectDetail p1 = (ProjectDetail) o1;
                     ProjectDetail p2 = (ProjectDetail) o2;
-                    return p1.project_name.compareToIgnoreCase(p2.project_name);
+                    return p1.location.compareToIgnoreCase(p2.location);
                 }
 
             });
@@ -231,7 +231,7 @@ public class MakersFragment extends ListFragment
             holder.textTitle.setText(mProjects.get(position).project_name);
 
             // TODO This should probably be location when they are available
-            holder.textSubTitle.setText(mProjects.get(position).organization);
+            holder.textSubTitle.setText(mProjects.get(position).location);
 
             //touch events
             holder.primaryTouchTargetView.setEnabled(true);
