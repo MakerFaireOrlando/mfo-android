@@ -16,7 +16,7 @@
 -->
 <resources>
 
-    <string name="app_name">Orlando Mini Maker Faire</string>
+    <string name="app_name">Orlando Maker Faire</string>
 
     <string-array name="selection_array">
         <item>Schedule</item>
@@ -35,17 +35,8 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
-    <string name="title_activity_web">Ommf</string>
+    <string name="title_activity_web">MFO</string>
     <string name="action_settings">Sign Up</string>
-    <string name="title_activity_recent_changes">RecentChanges</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_suggestions_fragment">SuggestionsFragment</string>
-    <string name="title_activity_jsonstatus_fragment">JSONStatusFragment</string>
-    <string name="title_activity_test_item_view">TestItemView</string>
-    <string name="title_activity_unique_item">Unique Item</string>
-    <string name="title_activity_area_status_list_fragment">AreaStatusListFragment</string>
-    <string name="title_activity_area">AreaActivity</string>
-    <string name="title_activity_item_activtity">ItemActivity</string>
 
     <string name="title_project_list">Projects</string>
     <string name="title_project_detail">Project Detail</string>
