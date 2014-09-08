@@ -26,8 +26,10 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,6 +73,24 @@ public class EventsFragment extends ListFragment {
             Gson gson = new Gson();
             Calendar calendar = gson.fromJson(jsonString, Calendar.class);
             mCalendarItems = calendar.items;
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+            Date startDate = sdf2.parse("2014-09-13T00:00:00-04:00");
+
+            List<Items> filterList = new ArrayList<Items>(mCalendarItems.size());
+
+            for(int i=0; i < mCalendarItems.size(); i++) {
+                if(mCalendarItems.get(i).start.dateTime != null) {
+                    Date itemDate = sdf2.parse(mCalendarItems.get(i).start.dateTime);
+                    if (itemDate.compareTo(
+                            startDate) >= 0) {
+                        filterList.add(mCalendarItems.get(i));
+                    }
+                }
+            }
+
+            mCalendarItems = filterList;
 
             Collections.sort(mCalendarItems, new Comparator() {
                 public int compare(Object o1, Object o2) {

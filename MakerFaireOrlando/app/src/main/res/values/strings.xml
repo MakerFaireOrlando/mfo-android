@@ -16,7 +16,7 @@
 -->
 <resources>
 
-    <string name="app_name">Orlando Maker Faire</string>
+    <string name="app_name">Maker Faire Orlando 2014</string>
 
     <string-array name="selection_array">
         <item>Schedule</item>

@@ -8,8 +8,8 @@ android {
         applicationId "com.makerfaireorlando.makerfaireorlando"
         minSdkVersion 9
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "2.2"
     }
     buildTypes {
         release {

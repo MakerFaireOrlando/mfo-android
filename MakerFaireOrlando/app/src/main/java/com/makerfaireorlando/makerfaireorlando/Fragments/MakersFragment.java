@@ -144,23 +144,29 @@ public class MakersFragment extends ListFragment
             mProjectsList = gson.fromJson(jsonString, ProjectsList.class);
             mAcceptedMakers = mProjectsList.accepteds;
 
-
             //Sort the accepted makers
             Collections.sort(mAcceptedMakers, new Comparator() {
 
                 public int compare(Object o1, Object o2) {
                     ProjectDetail p1 = (ProjectDetail) o1;
                     ProjectDetail p2 = (ProjectDetail) o2;
-                    return p1.location.compareToIgnoreCase(p2.location);
-                }
+                    String location1 = p1.location;
+                    String location2 = p2.location;
+                    if(location1 == null)
+                        location1 = "";
+                    if(location2 == null)
+                        location2 = "";
 
+                    return location1.compareToIgnoreCase(location2);
+                    //return p1.location.compareToIgnoreCase(p2.location);
+                }
             });
 
             //Custom list adapter for custom list view
             customAdapter.setAcceptedMakers(mAcceptedMakers);
             setListAdapter(customAdapter);
         } catch (Exception e) {
-            Log.wtf("com.makerfaireorlando.makerfaireorlando.MainActivity", "Exception at GSON parse");
+            Log.wtf("com.makerfaireorlando.makerfaireorlando.MakersFragment", "Exception at GSON parse");
         }
     }
 

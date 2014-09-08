@@ -197,6 +197,7 @@ public class MainActivity extends ActionBarActivity
     public void onResume() {
         super.onResume();  // Always call the superclass method first
 
+        /*
         if (prefs.getBoolean("firstrun", true)) {
             mDrawerLayout.openDrawer(mDrawerList);
             Intent intent = new Intent(this, SignUpActivity.class);
@@ -204,6 +205,7 @@ public class MainActivity extends ActionBarActivity
             prefs.edit().putBoolean("firstrun", false).commit();
             checkPlayServices();
         }
+        */
         // Previous way we cached data
         // may want to implement this for makers and events
         /*
@@ -366,7 +368,7 @@ public class MainActivity extends ActionBarActivity
     private void sendRegistrationIdToBackend() {
         // Your implementation here.
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://ckinberger.hashbang.sh:9999/");
+        HttpPost httppost = new HttpPost("http://udderweb.com:9999/register/android");
         JSONObject object = new JSONObject();
         String message;
         try {
@@ -459,10 +461,12 @@ public class MainActivity extends ActionBarActivity
         }
         // Handle action buttons
         switch(item.getItemId()) {
+         /*
         case R.id.action_sign_up:
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
             return true;
+            */
         case android.R.id.home:
             onBackPressed();
             return true;
