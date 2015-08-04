@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <!--android:layout_margin="@dimen/keyline_1_minus_8dp"-->
+
+    <FrameLayout
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_margin="4dp"
+        android:foreground="?selectableItemBackground">
+
+        <ViewSwitcher
+            android:layout_width="match_parent"
+            android:id="@+id/list_item_switch"
+            android:layout_height="@dimen/item_image_height"
+            android:outAnimation="@anim/abc_fade_out"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_image_height"
+                android:src="@drawable/makey"
+                android:id="@+id/list_item_image"
+                android:scaleType="centerCrop" />
+
+        </ViewSwitcher>
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_text"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
+            android:layout_gravity="bottom"
+            android:singleLine="false"
+            android:scrollHorizontally="false"
+            android:padding="4dp"/>
+
+    </FrameLayout>
+</LinearLayout>

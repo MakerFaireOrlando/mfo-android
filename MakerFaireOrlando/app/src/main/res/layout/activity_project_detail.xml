@@ -1,4 +1,153 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.makerfaireorlando.makerfaireorlando.Views.NotifyScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notify_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="@android:color/background_light">
+
+    <FrameLayout
+        android:clipChildren="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Image Layout -->
+        <FrameLayout
+            android:id="@+id/image_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/makey"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name" />
+
+        </FrameLayout>
+
+        <!-- Content Layout -->
+        <LinearLayout
+            android:id="@+id/content_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/background_light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/content_detail_layout"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- Project -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/maker_detail_description_title"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body1"
+                        android:id="@+id/project_description"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1"/>
+
+                    <!-- Maker -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/maker_detail_meet_title"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body2"
+                        android:textStyle="bold"
+                        android:id="@+id/maker_name"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body1"
+                        android:id="@+id/maker_description"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1"
+                        android:layout_marginBottom="@dimen/keyline_1" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!-- Toolbar Layout -->
+        <LinearLayout
+            android:id="@+id/toolbar_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:background="@color/primary_blue">
+
+
+
+            <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/project_toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:minHeight="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:contentInsetStart="@dimen/keyline_2"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+
+            </android.support.v7.widget.Toolbar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:id="@+id/project_location"
+                android:layout_marginBottom="@dimen/keyline_1"
+                android:layout_marginLeft="@dimen/keyline_2"
+                android:layout_marginRight="@dimen/keyline_2"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.makerfaireorlando.makerfaireorlando.Views.NotifyScrollView>
+
+<!--ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ProjectDetailActivity"
         android:layout_width="fill_parent"
@@ -31,7 +180,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:layout_height="2dp"
-            android:background="@color/pressed_ommf" />
+            />
 
         <TextView
             android:layout_width="fill_parent"
@@ -76,4 +225,4 @@
             style="@style/ListItemTitle"/>
 
     </LinearLayout>
-</ScrollView>
+</ScrollView-->

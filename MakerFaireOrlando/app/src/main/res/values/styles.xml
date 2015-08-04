@@ -1,35 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/themes.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/themes.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorPrimaryDark">@color/primary_blue_dark</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="Widget.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@android:color/holo_blue_bright</item>
+
+
+    <style name="ListItemContainerBase">
+       <item name="android:background">?android:activatedBackgroundIndicator</item>
+        <item name="android:minHeight">?android:listPreferredItemHeight</item>
     </style>
 
-    <style name="Widget.ActionBar.Transparent">
-        <item name="android:background">@android:color/transparent</item>
+    <!-- List item text -->
+    <style name="ListItemTitle">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAlignment">viewStart</item>
     </style>
 
-    <style name="LoginFormContainer">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">16dp</item>
+    <style name="ListItemSubtitle">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/body_text_2</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+
+    <!-- Detail Text -->
+    <style name="ItemDetailTitle">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+        <item name="android:textColor">@color/primary_red</item>
+
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="ItemDetailSubtitle">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/body_text_2</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="LinkItem">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/primary_blue</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="MapFloorSelectorButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/map_floor_button_background</item>
+        <item name="android:minWidth">40dp</item>
+        <item name="android:textColor">@color/map_floorselect_inactive</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
     </style>
 
 </resources>

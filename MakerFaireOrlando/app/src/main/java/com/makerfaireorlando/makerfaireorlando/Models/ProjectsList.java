@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by conner on 8/13/13.
- */
 public class ProjectsList {
 
     @SerializedName("attend_link")
