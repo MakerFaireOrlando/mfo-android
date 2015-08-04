@@ -4,6 +4,8 @@ Maker Faire Orlando Android
 Android application for the 2014 Maker Faire in Orlando
 Event application which provides attendees of the event with makers, events, and a map.
 
+[![Build Status](https://travis-ci.org/MakerFaireOrlando/mfo-android.svg)](https://travis-ci.org/MakerFaireOrlando/mfo-android)
+
 ## Calendar API Key
 For the EventsFragment to load the events you will need an api key from the Google Calendar V3 api.
 You can either request it from @connerbrooks or create your own.
