@@ -4,6 +4,8 @@ package com.makerfaireorlando.makerfaireorlando.Utils;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -94,18 +96,18 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         // to prevent stale images from being displayed, unset the image initially
         holder.mImageView.setImageBitmap(null);
 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ProjectDetail s = mDataset.get(position);
-        holder.mTextView.setText(s.project_name);
+        final ProjectDetail p = mDataset.get(position);
+        holder.mTextView.setText(p.project_name);
 
         // image displaying
-        String pic = mDataset.get(position).photo_link;
+        String pic = p.photo_link;
         final ImageView img = holder.mImageView;
 
         // nasty, nasty hack
@@ -119,24 +121,60 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     img.setImageBitmap(loadedImage);
-                    Palette palette = Palette.generate(loadedImage);
-                    Palette.Swatch swatch = palette.getVibrantSwatch();
-                    if (swatch != null) {
-                        int rgb = swatch.getRgb();
-                        int textColor = swatch.getTitleTextColor();
-                        holder.mTextView.setBackgroundColor(rgb);
-                        holder.mTextView.setTextColor(textColor);
+
+                    if (!p.hasColor) {
+                        findColors(loadedImage, p);
                     }
+                    if (p.hasColor) {
+                        holder.mTextView.setBackgroundColor(p.color);
+                        holder.mTextView.setTextColor(p.textColor);
+                    }
+
+                    /*
+                    img.setImageBitmap(loadedImage);
+                    Palette palette = Palette.generate(loadedImage);
+                    Palette.Swatch light = palette.getVibrantSwatch();
+                    Palette.Swatch dark = palette.getDarkVibrantSwatch();
+                    if (light != null) {
+                        p.color = light.getRgb();
+                        p.textColor = light.getTitleTextColor();
+                        p.darkColor = dark.getRgb();
+                        holder.mTextView.setBackgroundColor(s.color);
+                        holder.mTextView.setTextColor(s.textColor);
+                    }
+                    */
                 }
             });
-        } else
+        } else {
+            Bitmap b = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.makey);
             holder.mImageView.setImageDrawable(holder.itemView.getResources().getDrawable(R.drawable.makey));
+            if (!p.hasColor) {
+                findColors(b, p);
+            }
+            if (p.hasColor){
+                holder.mTextView.setBackgroundColor(p.color);
+                holder.mTextView.setTextColor(p.textColor);
+            }
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    private void findColors(Bitmap b, ProjectDetail s) {
+        Palette palette = Palette.generate(b);
+        Palette.Swatch light = palette.getVibrantSwatch();
+        Palette.Swatch dark = palette.getDarkVibrantSwatch();
+        if (light != null && dark != null) {
+            s.color = light.getRgb();
+            s.textColor = light.getTitleTextColor();
+            s.darkColor = dark.getRgb();
+
+            s.hasColor = true;
+        }
     }
 
 

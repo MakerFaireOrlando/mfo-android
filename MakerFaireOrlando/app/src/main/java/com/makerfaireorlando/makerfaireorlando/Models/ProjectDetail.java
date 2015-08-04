@@ -18,4 +18,10 @@ public class ProjectDetail implements Serializable {
     public String organization;
     public String photo_link;
     public Maker maker;
+
+    // Grid color properties
+    public int color;
+    public int darkColor;
+    public int textColor;
+    public boolean hasColor;
 }

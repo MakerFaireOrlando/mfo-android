@@ -1,14 +1,20 @@
 package com.makerfaireorlando.makerfaireorlando.Activities;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -78,14 +84,24 @@ public class MakerDetailActivity extends AppCompatActivity implements NotifyScro
 
         mProjectDetail = (ProjectDetail) extras.getSerializable(Constants.PROJECT);
 
+
         if (mProjectDetail.photo_link != null) {
-            new DownloadImageTask((ImageView) findViewById(R.id.image_view))
-                    .execute(mProjectDetail.photo_link);
-        } else {
-            // todo show placeholder image
+            new DownloadImageTask(mImageView).execute(mProjectDetail.photo_link);
         }
 
         mToolbar.setTitle(mProjectDetail.project_name);
+
+        if (mProjectDetail.color != 0) {
+            mToolbar.setBackgroundColor(mProjectDetail.color);
+            mToolbarLinearLayout.setBackgroundColor(mProjectDetail.color);
+            mToolbar.setTitleTextColor(mProjectDetail.textColor);
+            mProjectLocation.setTextColor(mProjectDetail.textColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(mProjectDetail.darkColor);
+            }
+        }
 
         // Show location
         if (mProjectDetail.location != null) {

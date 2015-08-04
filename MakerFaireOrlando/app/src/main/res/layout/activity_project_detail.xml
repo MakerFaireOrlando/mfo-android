@@ -127,8 +127,10 @@
                 android:background="?attr/colorPrimary"
                 app:contentInsetStart="@dimen/keyline_2"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
+
+            </android.support.v7.widget.Toolbar>
 
             <TextView
                 android:layout_width="match_parent"
