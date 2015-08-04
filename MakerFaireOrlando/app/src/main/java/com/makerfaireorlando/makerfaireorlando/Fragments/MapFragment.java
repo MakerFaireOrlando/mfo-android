@@ -10,13 +10,10 @@ import android.widget.Button;
 
 import com.makerfaireorlando.makerfaireorlando.R;
 
-/**
- * Created by conner on 8/22/13.
- */
 public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.map_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
         final WebView webView = (WebView) rootView.findViewById(R.id.webView);
         webView.loadUrl("file:///android_res/drawable/ommf_officialmaps2013_level1.jpg");

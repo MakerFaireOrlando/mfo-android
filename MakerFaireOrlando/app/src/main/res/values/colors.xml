@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary_blue">#00AEEF</color>
+    <color name="primary_blue_dark">#0277bd</color>
+    <color name="primary_red">#ED1C24</color>
+    <color name="accent">#ff5252</color>
+
+    <color name="body_text_1">#ff000000</color>
+    <color name="body_text_2">#77000000</color>
+    <color name="body_text_3">#33000000</color>
+    <color name="map_floorselect_inactive">#FF333333</color>
+</resources>

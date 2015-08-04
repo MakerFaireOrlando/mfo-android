@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.makerfaireorlando.makerfaireorlando.Utils.EventRestClient;
 import com.makerfaireorlando.makerfaireorlando.Models.Calendar;
 import com.makerfaireorlando.makerfaireorlando.Models.Items;
 import com.makerfaireorlando.makerfaireorlando.R;
+import com.makerfaireorlando.makerfaireorlando.Utils.EventRestClient;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -30,9 +30,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by conner on 6/16/13.
- */
 public class EventsFragment extends ListFragment {
     String mCacheJSONString;
     static List<Items> mCalendarItems;
@@ -43,9 +40,9 @@ public class EventsFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         this.setHasOptionsMenu(true);
 
-        try{
+        try {
             getItemList();
-        }catch(JSONException e){
+        } catch (JSONException e) {
             Log.wtf("EventsFragment", "Exception at JSON parse");
         }
     }
@@ -80,21 +77,20 @@ public class EventsFragment extends ListFragment {
                 }
             });
 
-            String[] mCalTitles = new String[mCalendarItems.size()];
-
-            for(int i=0; i<mCalendarItems.size(); i++){
-                mCalTitles[i] = mCalendarItems.get(i).summary;
-            }
-
             CalendarListAdapter customAdapter = new CalendarListAdapter(getActivity(), mCalendarItems);
             setListAdapter(customAdapter);
+
         } catch (Exception e) {
             Log.wtf("com.makerfaireorlando.makerfaireorlando.MainActivity", "Exception at GSON parse");
         }
     }
 
+    public static List<Items> getmCalendarItems(){
+        return mCalendarItems;
+    }
+
     public interface OnEventSelectedListener {
-        public void onEventSelected(int p);
+        void onEventSelected(Items event);
     }
 
     @Override
@@ -115,13 +111,7 @@ public class EventsFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        mCallback.onEventSelected(position);
-    }
-
-
-    // TODO pass specific event detail to detail view rather than grab all events.
-    public static List<Items> getmCalendarItems(){
-        return mCalendarItems;
+        mCallback.onEventSelected(mCalendarItems.get(position));
     }
 
     private class CalendarListAdapter extends BaseAdapter {
@@ -158,9 +148,9 @@ public class EventsFragment extends ListFragment {
             ViewHolder holder = null;
             final int mPosition = position;
 
-            if(convertView == null) {
+            if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.list_item_schedule_block, null);
+                convertView = inflater.inflate(R.layout.list_item_event, null);
                 holder.startTime = (TextView) convertView.findViewById(R.id.block_time);
                 holder.endTime = (TextView) convertView.findViewById(R.id.block_endtime);
                 holder.textTitle = (TextView) convertView.findViewById(R.id.block_title);
@@ -171,36 +161,37 @@ public class EventsFragment extends ListFragment {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            //"2013-10-05T16:00:00-04:00"
+            // "2013-10-05T16:00:00-04:00"
             //parse times
             long mStartDate = 0;
             long mEndDate = 0;
             String startTime = items.get(position).start.dateTime;
             String endTime = items.get(position).end.dateTime;
 
-
-
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-            try{
+
+            try {
                 mStartDate = sdf.parse(startTime).getTime();
                 mEndDate= sdf.parse(endTime).getTime();
-            }catch(ParseException e){
-                Log.wtf("Calendar List Adapter", "parse exectption for date time");
+            } catch(ParseException e) {
+                Log.wtf("Calendar List Adapter", "parse exception for date time");
             }
+
             DateFormat df = new SimpleDateFormat("h:mm a");
             startTime = df.format(mStartDate);
             endTime = df.format(mEndDate);
 
             holder.startTime.setText(startTime);
             holder.endTime.setText(endTime);
-
             holder.textTitle.setText(items.get(position).summary);
             holder.textSubTitle.setText(items.get(position).location);
             holder.primaryTouchTargetView.setEnabled(true);
+
+            // setup click listeners
             holder.primaryTouchTargetView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.onEventSelected(mPosition);
+                    mCallback.onEventSelected(mCalendarItems.get(mPosition));
                 }
             });
 

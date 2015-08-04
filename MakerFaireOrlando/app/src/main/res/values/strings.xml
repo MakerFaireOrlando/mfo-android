@@ -1,54 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  Copyright 2013 The Android Open Source Project
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
 <resources>
+    <!-- App Name and year -->
+    <string name="app_name">Maker Faire Orlando</string>
+    <string name="year">2015</string>
 
-    <string name="app_name">Orlando Maker Faire</string>
+    <!-- Navigation Drawer Strings -->
+    <string name="title_section1">Schedule</string>
+    <string name="title_section2">Makers</string>
+    <string name="title_section3">Map</string>
+    <string name="title_section4">Info</string>
 
-    <string-array name="selection_array">
-        <item>Schedule</item>
-        <item>Makers</item>
-        <item>Map</item>
-        <item>Info</item>
-    </string-array>
-    <string-array name="nav_classes">
-        <item>com.makerfaireorlando.makerfaireorlando.Fragments.EventsFragment</item>
-        <item>com.makerfaireorlando.makerfaireorlando.Fragments.ProjectsListFragment</item>
-        <item>com.makerfaireorlando.makerfaireorlando.Fragments.MapFragment</item>
-        <item>com.makerfaireorlando.makerfaireorlando.Fragments.ConnectFragment</item>
-    </string-array>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_websearch">Web search</string>
-    <string name="app_not_available">Sorry, there\'s no web browser available</string>
-    <string name="title_activity_web">MFO</string>
-    <string name="action_settings">Sign Up</string>
-
-    <string name="title_project_list">Projects</string>
-    <string name="title_project_detail">Project Detail</string>
-    <string name="title_maker_list">Makers</string>
-    <string name="title_maker_detail">Maker Detail</string>
-    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <!-- Menu actions -->
+    <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
 
+    <!-- Map strings -->
     <string name="map_floorcontrol_1">1</string>
     <string name="map_floorcontrol_2">2</string>
     <string name="map_floorcontrol_3">3</string>
     <string name="map_floorcontrol_4">4</string>
 
+    <!-- Maker Detail Strings -->
+    <string name="maker_detail_description_title">Description</string>
+    <string name="maker_detail_meet_title">About the Maker</string>
 
+    <string name="calendar_key">AIzaSyA61W-6NtoTuAcO8TVqYOyFAJ2Hj6mhUB0</string>
 </resources>

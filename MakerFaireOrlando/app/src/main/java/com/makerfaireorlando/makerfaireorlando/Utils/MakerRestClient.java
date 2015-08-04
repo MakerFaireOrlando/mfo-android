@@ -6,7 +6,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class MakerRestClient {
-    private static final String BASE_URL = "http://www.callformakers.org/orlando2014/default/";
+    private static final String BASE_URL = "http://www.makerfaireorlando.com/";
 
     final int DEFAULT_TIMEOUT = 20 * 1000;
 

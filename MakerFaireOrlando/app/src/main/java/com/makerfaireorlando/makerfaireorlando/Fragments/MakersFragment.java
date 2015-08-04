@@ -3,8 +3,8 @@ package com.makerfaireorlando.makerfaireorlando.Fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -36,15 +36,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by conner on 8/21/13.
- */
 public class MakersFragment extends ListFragment
                             implements SearchView.OnQueryTextListener{
 
-    //private List<ProjectDetail> mProjects;
     private ProjectsList mProjectsList;
     private static List<ProjectDetail> mAcceptedMakers;
+    Gson gson = new Gson();
 
     OnMakerSelectedListener mCallback;
     ProjectsListAdapter customAdapter;
@@ -52,24 +49,19 @@ public class MakersFragment extends ListFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         this.setHasOptionsMenu(true);
         customAdapter = new ProjectsListAdapter(getActivity());
-
-        //mProjects = MainActivity.getAcceptedMakers();
         try {
             getItemList();
-        } catch(JSONException e) {
-
+        } catch (JSONException e) {
+            Log.wtf("MakersFragment", "Json exception at maker parse");
         }
-
-        //Custom list adapter for custom list view
-        //customAdapter = new ProjectsListAdapter(getActivity(), mAcceptedMakers);
-        //setListAdapter(customAdapter);
     }
 
     // Container Activity must implement this interface
     public interface OnMakerSelectedListener {
-        public void onMakerSelected(String p);
+       void onMakerSelected(ProjectDetail projectDetail);
     }
 
     @Override
@@ -84,13 +76,6 @@ public class MakersFragment extends ListFragment
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         searchView.setOnQueryTextListener(this);
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //hide logo
-
-            }
-        });
     }
 
     public boolean onQueryTextChange(String newText) {
@@ -104,7 +89,6 @@ public class MakersFragment extends ListFragment
         customAdapter.getFilter().filter(query);
         return true;
     }
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -124,12 +108,12 @@ public class MakersFragment extends ListFragment
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        mCallback.onMakerSelected(mAcceptedMakers.get(position).project_name);
+        mCallback.onMakerSelected(mAcceptedMakers.get(position));
     }
 
     public void getItemList() throws JSONException {
 
-        MakerRestClient.get("overviewALL.json", null, new JsonHttpResponseHandler() {
+        MakerRestClient.get("makers-json", null, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject itemObject) {
@@ -140,10 +124,8 @@ public class MakersFragment extends ListFragment
 
     public void parseItemList(String jsonString){
         try {
-            Gson gson = new Gson();
             mProjectsList = gson.fromJson(jsonString, ProjectsList.class);
             mAcceptedMakers = mProjectsList.accepteds;
-
 
             //Sort the accepted makers
             Collections.sort(mAcceptedMakers, new Comparator() {
@@ -183,12 +165,6 @@ public class MakersFragment extends ListFragment
             inflater = LayoutInflater.from(context);
         }
 
-        public ProjectsListAdapter(Context context, List<ProjectDetail> mProjects) {
-            inflater = LayoutInflater.from(context);
-            this.mProjects = mProjects;
-            originalData = this.mProjects;
-        }
-
         public void setAcceptedMakers(List<ProjectDetail> mProjects) {
             this.mProjects = mProjects;
             originalData = this.mProjects;
@@ -218,7 +194,7 @@ public class MakersFragment extends ListFragment
 
             if(convertView == null) {
                 holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.list_item_makers, null);
+                convertView = inflater.inflate(R.layout.list_item_maker, null);
                 holder.textTitle = (TextView) convertView.findViewById(R.id.block_title);
                 holder.textSubTitle = (TextView) convertView.findViewById(R.id.block_subtitle);
                 holder.primaryTouchTargetView =  convertView.findViewById(R.id.list_item_middle_container);
@@ -238,7 +214,7 @@ public class MakersFragment extends ListFragment
             holder.primaryTouchTargetView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.onMakerSelected(mProjects.get(mPosition).project_name);
+                    mCallback.onMakerSelected(mProjects.get(mPosition));
                 }
             });
 
@@ -293,10 +269,5 @@ public class MakersFragment extends ListFragment
                 }
             };
         }
-    }
-
-    // TODO pass specific maker detail to detail view rather than grab all makers.
-    public static List<ProjectDetail> getmAcceptedMakers() {
-       return mAcceptedMakers;
     }
 }
