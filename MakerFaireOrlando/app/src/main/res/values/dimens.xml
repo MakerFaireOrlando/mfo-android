@@ -6,6 +6,8 @@
 
     <dimen name="schedule_block_time_width">72dp</dimen>
 
+    <dimen name="item_image_height">160dp</dimen>
+
     <!-- Keylines -->
     <dimen name="keyline_1">16dp</dimen>
     <dimen name="keyline_1_minus_8dp">8dp</dimen>

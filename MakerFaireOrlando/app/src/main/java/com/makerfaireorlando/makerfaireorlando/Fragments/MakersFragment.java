@@ -2,10 +2,13 @@ package com.makerfaireorlando.makerfaireorlando.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,10 +25,13 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.makerfaireorlando.makerfaireorlando.Activities.MakerDetailActivity;
+import com.makerfaireorlando.makerfaireorlando.Models.Maker;
 import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
 import com.makerfaireorlando.makerfaireorlando.Models.ProjectsList;
 import com.makerfaireorlando.makerfaireorlando.R;
 import com.makerfaireorlando.makerfaireorlando.Utils.MakerRestClient;
+import com.makerfaireorlando.makerfaireorlando.Utils.ProjectsListAdapter;
 
 import org.apache.http.Header;
 import org.json.JSONException;
@@ -36,7 +42,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MakersFragment extends ListFragment
+public class MakersFragment extends Fragment
                             implements SearchView.OnQueryTextListener{
 
     private ProjectsList mProjectsList;
@@ -44,19 +50,60 @@ public class MakersFragment extends ListFragment
     Gson gson = new Gson();
 
     OnMakerSelectedListener mCallback;
-    ProjectsListAdapter customAdapter;
+    RecyclerView.Adapter mAdapter;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    private int SPAN_COUNT = 2; // num columns in grid
+
+
+    /*
+    public static MakersFragment newInstance(int index) {
+        MakersFragment f = new MakersFragment();
+
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        f.setArguments(args);
+
+        return f;
+    }
+    */
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_makers, container, false);
+
+        // set up recycler view
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.maker_recycler_view);
+
+        mLayoutManager = new GridLayoutManager(getActivity(), SPAN_COUNT);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent d = new Intent(getActivity(), MakerDetailActivity.class);
+                startActivityForResult(d, 1);
+            }
+        });
 
         this.setHasOptionsMenu(true);
-        customAdapter = new ProjectsListAdapter(getActivity());
         try {
             getItemList();
         } catch (JSONException e) {
             Log.wtf("MakersFragment", "Json exception at maker parse");
         }
+
+        return view;
+    }
+
+
+        @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
     }
 
     // Container Activity must implement this interface
@@ -80,13 +127,13 @@ public class MakersFragment extends ListFragment
 
     public boolean onQueryTextChange(String newText) {
         // this is your adapter that will be filtered
-        customAdapter.getFilter().filter(newText);
+        //mAdapter.getFilter().filter(newText);
         return true;
     }
 
     public boolean onQueryTextSubmit(String query) {
         // this is your adapter that will be filtered
-        customAdapter.getFilter().filter(query);
+        //mAdapter.getFilter().filter(query);
         return true;
     }
 
@@ -102,13 +149,6 @@ public class MakersFragment extends ListFragment
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        mCallback.onMakerSelected(mAcceptedMakers.get(position));
     }
 
     public void getItemList() throws JSONException {
@@ -139,13 +179,15 @@ public class MakersFragment extends ListFragment
             });
 
             //Custom list adapter for custom list view
-            customAdapter.setAcceptedMakers(mAcceptedMakers);
-            setListAdapter(customAdapter);
+
+            mAdapter = new ProjectsListAdapter(mAcceptedMakers, getActivity());
+            mRecyclerView.setAdapter(mAdapter);
         } catch (Exception e) {
             Log.wtf("com.makerfaireorlando.makerfaireorlando.MainActivity", "Exception at GSON parse");
         }
     }
 
+    /*
     private class ProjectsListAdapter extends BaseAdapter
                                     implements Filterable{
 
@@ -270,4 +312,5 @@ public class MakersFragment extends ListFragment
             };
         }
     }
+    */
 }

@@ -4,8 +4,8 @@
     <string name="year">2015</string>
 
     <!-- Navigation Drawer Strings -->
-    <string name="title_section1">Schedule</string>
-    <string name="title_section2">Makers</string>
+    <string name="title_section1">Makers</string>
+    <string name="title_section2">Schedule</string>
     <string name="title_section3">Map</string>
     <string name="title_section4">Info</string>
 

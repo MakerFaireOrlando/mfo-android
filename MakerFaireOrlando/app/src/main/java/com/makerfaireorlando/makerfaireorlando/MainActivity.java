@@ -20,6 +20,9 @@ import com.makerfaireorlando.makerfaireorlando.Fragments.MapFragment;
 import com.makerfaireorlando.makerfaireorlando.Models.Items;
 import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
 import com.makerfaireorlando.makerfaireorlando.Utils.Constants;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, EventsFragment.OnEventSelectedListener, MakersFragment.OnMakerSelectedListener {
@@ -54,6 +57,21 @@ public class MainActivity extends AppCompatActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        if(!ImageLoader.getInstance().isInited()) {
+
+            DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .build();
+            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                    .defaultDisplayImageOptions(defaultOptions)
+                    .diskCacheSize(50 * 1024 * 1024)
+                    .memoryCacheSize(20 * 1024 * 1024)
+                            //.writeDebugLogs()
+                    .build();
+            ImageLoader.getInstance().init(config);
+        }
     }
 
 
@@ -63,11 +81,11 @@ public class MainActivity extends AppCompatActivity
         switch (position) {
             case 0:
                 mTitle = getString(R.string.title_section1);
-                changeFragment(new EventsFragment());
+                changeFragment(new MakersFragment());
                 break;
             case 1:
                 mTitle = getString(R.string.title_section2);
-                changeFragment(new MakersFragment());
+                changeFragment(new EventsFragment());
                 break;
             case 2:
                 mTitle = getString(R.string.title_section3);
