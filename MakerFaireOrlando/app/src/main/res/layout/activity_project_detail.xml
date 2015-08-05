@@ -69,6 +69,25 @@
                         android:layout_marginLeft="@dimen/keyline_2"
                         android:layout_marginRight="@dimen/keyline_1"/>
 
+                    <!-- additional images -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/project_additional_photos"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/project_pager"
+                        android:layout_marginTop="@dimen/keyline_1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
                     <!-- Maker -->
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,87 +161,5 @@
                 android:layout_marginRight="@dimen/keyline_2"/>
 
         </LinearLayout>
-
     </FrameLayout>
-
 </com.makerfaireorlando.makerfaireorlando.Views.NotifyScrollView>
-
-<!--ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ProjectDetailActivity"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView">
-    <LinearLayout
-        android:id="@+id/project_detail_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ProjectDetailActivity"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/projectImageHeader"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"/>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:id="@+id/titleText"
-            style="@style/ItemDetailTitle"/>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_height="2dp"
-            />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:id="@+id/location"
-            style="@style/ItemDetailSubtitle"/>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:id="@+id/organization"
-            style="@style/ItemDetailSubtitle"/>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:linksClickable="true"
-            android:id="@+id/website"
-            style="@style/LinkItem"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Video"
-            android:id="@+id/youtubebutton"
-            android:layout_gravity="left"
-            android:layout_marginLeft="16dp"/>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/descriptionText"
-            style="@style/ListItemTitle"/>
-
-    </LinearLayout>
-</ScrollView-->

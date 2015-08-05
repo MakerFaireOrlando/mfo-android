@@ -1,17 +1,22 @@
 package com.makerfaireorlando.makerfaireorlando.Activities;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,11 +25,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
+import com.makerfaireorlando.makerfaireorlando.Models.Exhibits.Photo;
+import com.makerfaireorlando.makerfaireorlando.Models.Exhibits.ProjectDetail;
 import com.makerfaireorlando.makerfaireorlando.R;
 import com.makerfaireorlando.makerfaireorlando.Utils.Constants;
-import com.makerfaireorlando.makerfaireorlando.Utils.DownloadImageTask;
+import com.makerfaireorlando.makerfaireorlando.Network.DownloadImageTask;
 import com.makerfaireorlando.makerfaireorlando.Views.NotifyScrollView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import java.util.List;
 
 public class MakerDetailActivity extends AppCompatActivity implements NotifyScrollView.Callback {
     public static ProjectDetail mProjectDetail;
@@ -45,6 +56,8 @@ public class MakerDetailActivity extends AppCompatActivity implements NotifyScro
     private TextView mProjectLocation;
     private TextView mProjectDescription;
 
+    private ViewPager mProjectViewPager;
+
     private TextView mMakerDescription;
     private TextView mMakerName;
 
@@ -58,6 +71,7 @@ public class MakerDetailActivity extends AppCompatActivity implements NotifyScro
         mImageView          = (ImageView) findViewById(R.id.image_view);
         mProjectLocation    = (TextView) findViewById(R.id.project_location);
         mProjectDescription = (TextView) findViewById(R.id.project_description);
+        mProjectViewPager          = (ViewPager) findViewById(R.id.project_pager);
         mMakerDescription   = (TextView) findViewById(R.id.maker_description);
         mMakerName          = (TextView) findViewById(R.id.maker_name);
 
@@ -111,7 +125,14 @@ public class MakerDetailActivity extends AppCompatActivity implements NotifyScro
         }
 
         mProjectDescription.setText(mProjectDetail.description);
-        // Todo add all extra content dynamically for the project
+
+        // images view view pager
+        if (mProjectDetail.additional_photos != null) {
+            mProjectViewPager.setAdapter(new PlaceSlidesFragmentAdapter(getSupportFragmentManager(),
+                    mProjectDetail.additional_photos));
+        } else {
+            mProjectViewPager.setVisibility(View.GONE);
+        }
 
         /* Setup Maker content */
         mMakerName.setText(mProjectDetail.maker.name);
@@ -190,6 +211,59 @@ public class MakerDetailActivity extends AppCompatActivity implements NotifyScro
         } else {
             ViewCompat.setTranslationY(mToolbarLinearLayout, newY);
             ViewCompat.setTranslationY(mImageFrameLayout, scrollY * 0.5f);
+        }
+    }
+
+    public class PlaceSlidesFragmentAdapter extends FragmentPagerAdapter {
+
+        private List<Photo> photos;
+
+
+        public PlaceSlidesFragmentAdapter(FragmentManager fm, List<Photo> photos) {
+            super(fm);
+            this.photos = photos;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new ImageSlideFragment(photos.get(position).medium);
+        }
+
+        @Override
+        public int getCount() {
+            return photos.size();
+        }
+
+    }
+
+    public final class ImageSlideFragment extends Fragment {
+        private String mLink;
+        private ImageView mImageView;
+
+        public ImageSlideFragment(String link) {
+            mLink = link;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            final View view = inflater.inflate(R.layout.fragment_image_slide, container, false);
+
+            mImageView = (ImageView) view.findViewById(R.id.slide_image);
+
+
+            float height = getActivity().getResources().getDimension(R.dimen.item_image_height);
+            ImageSize size = new ImageSize((int) (height * 2), (int) height);
+
+            ImageLoader.getInstance().loadImage(mLink, size, new SimpleImageLoadingListener() {
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    mImageView.setImageBitmap(loadedImage);
+                }
+            });
+
+            return view;
         }
     }
 }

@@ -25,6 +25,7 @@
     <!-- Maker Detail Strings -->
     <string name="maker_detail_description_title">Description</string>
     <string name="maker_detail_meet_title">About the Maker</string>
+    <string name="project_additional_photos">Photos</string>
 
     <string name="calendar_key">AIzaSyA61W-6NtoTuAcO8TVqYOyFAJ2Hj6mhUB0</string>
 </resources>

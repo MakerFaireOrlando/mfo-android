@@ -1,4 +1,6 @@
-package com.makerfaireorlando.makerfaireorlando.Models;
+package com.makerfaireorlando.makerfaireorlando.Models.Exhibits;
+
+import com.makerfaireorlando.makerfaireorlando.Models.Exhibits.Maker;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +17,7 @@ public class ProjectDetail implements Serializable {
     public String project_short_summary;
     public String location;
     public String video_link;
+    public List<Photo> additional_photos;
     public String organization;
     public String photo_link;
     public Maker maker;

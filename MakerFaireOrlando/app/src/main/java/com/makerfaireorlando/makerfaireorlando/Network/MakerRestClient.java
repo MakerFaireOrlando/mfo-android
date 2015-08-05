@@ -1,4 +1,4 @@
-package com.makerfaireorlando.makerfaireorlando.Utils;
+package com.makerfaireorlando.makerfaireorlando.Network;
 
 
 import com.loopj.android.http.AsyncHttpClient;

@@ -6,13 +6,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.makerfaireorlando.makerfaireorlando.Models.Items;
+import com.makerfaireorlando.makerfaireorlando.Models.Schedule.Event;
 import com.makerfaireorlando.makerfaireorlando.R;
 import com.makerfaireorlando.makerfaireorlando.Utils.Constants;
 
 public class EventDetailActivity extends AppCompatActivity {
 
-    private Items mEvent;
+    private Event mEvent;
 
     /* Views */
     private Toolbar mToolbar;
@@ -42,9 +42,9 @@ public class EventDetailActivity extends AppCompatActivity {
             throw new IllegalArgumentException("DetailView requires extras");
         }
 
-        mEvent = (Items) extras.getSerializable(Constants.EVENT);
+        mEvent = (Event) extras.getSerializable(Constants.EVENT);
 
-        mTitle.setText(mEvent.summary);
+        mTitle.setText(mEvent.name);
 
         if (mEvent.location!=null) {
             mLocation.setText(mEvent.location);

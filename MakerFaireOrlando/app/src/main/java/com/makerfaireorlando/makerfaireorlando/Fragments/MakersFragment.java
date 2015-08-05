@@ -1,12 +1,7 @@
 package com.makerfaireorlando.makerfaireorlando.Fragments;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,28 +13,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.makerfaireorlando.makerfaireorlando.Activities.MakerDetailActivity;
-import com.makerfaireorlando.makerfaireorlando.Models.Maker;
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectsList;
+import com.makerfaireorlando.makerfaireorlando.Models.Exhibits.ProjectDetail;
+import com.makerfaireorlando.makerfaireorlando.Models.Exhibits.ProjectsList;
 import com.makerfaireorlando.makerfaireorlando.R;
-import com.makerfaireorlando.makerfaireorlando.Utils.MakerRestClient;
+import com.makerfaireorlando.makerfaireorlando.Network.MakerRestClient;
 import com.makerfaireorlando.makerfaireorlando.Utils.ProjectsListAdapter;
 
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -51,7 +38,6 @@ public class MakersFragment extends Fragment
     private static List<ProjectDetail> mAcceptedMakers;
     Gson gson = new Gson();
 
-    OnMakerSelectedListener mCallback;
     RecyclerView.Adapter mAdapter;
 
     private RecyclerView mRecyclerView;
@@ -85,11 +71,6 @@ public class MakersFragment extends Fragment
         return view;
     }
 
-    // Container Activity must implement this interface
-    public interface OnMakerSelectedListener {
-       void onMakerSelected(ProjectDetail projectDetail);
-    }
-
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.list_projects, menu);
 
@@ -101,28 +82,14 @@ public class MakersFragment extends Fragment
 
     public boolean onQueryTextChange(String newText) {
         // this is your adapter that will be filtered
-        //mAdapter.getFilter().filter(newText);
+        ((ProjectsListAdapter)mAdapter).getFilter().filter(newText);
         return true;
     }
 
     public boolean onQueryTextSubmit(String query) {
         // this is your adapter that will be filtered
-        //mAdapter.getFilter().filter(query);
+        ((ProjectsListAdapter)mAdapter).getFilter().filter(query);
         return true;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (OnMakerSelectedListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
-        }
     }
 
     public void getItemList() throws JSONException {

@@ -1,6 +1,5 @@
 package com.makerfaireorlando.makerfaireorlando;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -12,20 +11,15 @@ import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 
-import com.makerfaireorlando.makerfaireorlando.Activities.EventDetailActivity;
-import com.makerfaireorlando.makerfaireorlando.Fragments.EventsFragment;
-import com.makerfaireorlando.makerfaireorlando.Activities.MakerDetailActivity;
 import com.makerfaireorlando.makerfaireorlando.Fragments.MakersFragment;
 import com.makerfaireorlando.makerfaireorlando.Fragments.MapFragment;
-import com.makerfaireorlando.makerfaireorlando.Models.Items;
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
-import com.makerfaireorlando.makerfaireorlando.Utils.Constants;
+import com.makerfaireorlando.makerfaireorlando.Fragments.ScheduleFragment;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, EventsFragment.OnEventSelectedListener, MakersFragment.OnMakerSelectedListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -85,7 +79,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 1:
                 mTitle = getString(R.string.title_section2);
-                changeFragment(new EventsFragment());
+                changeFragment(new ScheduleFragment());
                 break;
             case 2:
                 mTitle = getString(R.string.title_section3);
@@ -128,18 +122,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void onEventSelected(Items event)
-    {
-        Intent i = new Intent(this, EventDetailActivity.class);
-        i.putExtra(Constants.EVENT, event);
-        this.startActivity(i);
-    }
-
-    public void onMakerSelected(ProjectDetail projectDetail) {
-        Intent i = new Intent(this, MakerDetailActivity.class);
-        i.putExtra(Constants.PROJECT, projectDetail);
-        this.startActivity(i);
-    }
 
     public void changeFragment(Fragment f)
     {

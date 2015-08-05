@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,12 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.makerfaireorlando.makerfaireorlando.Activities.MakerDetailActivity;
-import com.makerfaireorlando.makerfaireorlando.Models.ProjectDetail;
+import com.makerfaireorlando.makerfaireorlando.Models.Exhibits.ProjectDetail;
 import com.makerfaireorlando.makerfaireorlando.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
@@ -27,13 +27,12 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapter.ViewHolder> {
+public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapter.ViewHolder> implements Filterable {
     private Context mContext;
     private List<ProjectDetail> mDataset;
     private View.OnClickListener clickListener;
 
 
-    private List<ProjectDetail> mProjects;
     private List<ProjectDetail> originalData;
     private List<ProjectDetail> filteredData;
 
@@ -42,7 +41,7 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public FrameLayout mCardView;
         public TextView mTextView;
@@ -67,11 +66,6 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
 //            mSubtitle = (TextView) v.findViewById(R.id.item_subtitle);
             mTextView.setSelected(true);
             mImageView = (ImageView) v.findViewById(R.id.list_item_image);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Log.d("yay", "onClick " + getPosition() + " ");
         }
     }
 
@@ -129,20 +123,6 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
                         holder.mTextView.setBackgroundColor(p.color);
                         holder.mTextView.setTextColor(p.textColor);
                     }
-
-                    /*
-                    img.setImageBitmap(loadedImage);
-                    Palette palette = Palette.generate(loadedImage);
-                    Palette.Swatch light = palette.getVibrantSwatch();
-                    Palette.Swatch dark = palette.getDarkVibrantSwatch();
-                    if (light != null) {
-                        p.color = light.getRgb();
-                        p.textColor = light.getTitleTextColor();
-                        p.darkColor = dark.getRgb();
-                        holder.mTextView.setBackgroundColor(s.color);
-                        holder.mTextView.setTextColor(s.textColor);
-                    }
-                    */
                 }
             });
         } else {
@@ -178,7 +158,6 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
     }
 
 
-    /*
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -213,12 +192,10 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 filteredData = (ArrayList<ProjectDetail>) filterResults.values;
-                mProjects = filteredData;
+                mDataset = filteredData;
                 notifyDataSetChanged();
             }
         };
     }
 }
-*/
 
-}

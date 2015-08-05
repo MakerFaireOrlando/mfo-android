@@ -1,4 +1,4 @@
-package com.makerfaireorlando.makerfaireorlando.Utils;
+package com.makerfaireorlando.makerfaireorlando.Network;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,9 +8,6 @@ import android.widget.ImageView;
 
 import java.io.InputStream;
 
-/**
- * Created by conner on 8/22/13.
- */
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
 

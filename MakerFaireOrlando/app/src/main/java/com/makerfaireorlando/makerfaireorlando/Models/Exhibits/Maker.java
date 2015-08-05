@@ -1,4 +1,4 @@
-package com.makerfaireorlando.makerfaireorlando.Models;
+package com.makerfaireorlando.makerfaireorlando.Models.Exhibits;
 
 import java.io.Serializable;
 

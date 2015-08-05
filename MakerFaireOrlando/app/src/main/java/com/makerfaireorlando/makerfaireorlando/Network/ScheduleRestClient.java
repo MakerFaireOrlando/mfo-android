@@ -1,14 +1,11 @@
-package com.makerfaireorlando.makerfaireorlando.Utils;
+package com.makerfaireorlando.makerfaireorlando.Network;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-/**
- * Created by conner on 9/28/13.
- */
-public class EventRestClient {
-    private static final String BASE_URL = "https://www.googleapis.com/calendar/v3/calendars/orlandominimakerfaire.com_vffhp2b6oi3kiu3trnoo1502hg@group.calendar.google.com/events?key=";
+public class ScheduleRestClient {
+    private static final String BASE_URL = "http://cbrooks.co/";
 
     final int DEFAULT_TIMEOUT = 20 * 1000;
 
