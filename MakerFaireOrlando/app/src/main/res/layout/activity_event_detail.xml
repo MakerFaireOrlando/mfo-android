@@ -1,68 +1,184 @@
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.makerfaireorlando.mforlando.Views.NotifyScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notify_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.share.share.ItemCreateActivity"
-    android:orientation="vertical">
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="@android:color/background_light">
 
-    <include layout="@layout/toolbar_main"/>
-
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar_secondary"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:clipChildren="false"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <!-- Image Layout -->
+        <FrameLayout
+            android:id="@+id/image_frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/keyline_1"
-            android:layout_marginLeft="@dimen/actionbar_association_margin"
-            android:layout_marginRight="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/keyline_1"
-            >
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+            <ImageView
+                android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/event_title" />
+                android:layout_height="250dp"
+                android:src="@drawable/makey"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/event_location"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+        </FrameLayout>
 
+        <!-- Content Layout -->
+        <LinearLayout
+            android:id="@+id/content_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/background_light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/content_detail_layout"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- Event -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/description_title"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body1"
+                        android:id="@+id/event_description"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/cost_title"
+                        android:id="@+id/event_cost_title"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body1"
+                        android:id="@+id/event_cost"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/duration_title"
+                        android:id="@+id/event_duration_title"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body1"
+                        android:id="@+id/event_duration"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/additional_info_title"
+                        android:id="@+id/event_additional_info_title"
+                        android:textSize="@dimen/subhead"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginLeft="@dimen/keyline_2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/body1"
+                        android:id="@+id/event_additional_info"
+                        android:textColorLink="@color/accent"
+                        android:layout_marginTop="@dimen/keyline_1_minus_8dp"
+                        android:layout_marginBottom="@dimen/keyline_2_minus_16dp"
+                        android:layout_marginLeft="@dimen/keyline_2"
+                        android:layout_marginRight="@dimen/keyline_1" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
-    </android.support.v7.widget.Toolbar>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/keyline_1"
-        android:layout_marginLeft="@dimen/actionbar_association_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:layout_width="fill_parent"
+        <!-- Toolbar Layout -->
+        <LinearLayout
+            android:id="@+id/toolbar_linear_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/event_description_full"
-            style="@style/ListItemTitle"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:background="@color/primary_blue">
 
-</LinearLayout>
+
+
+            <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/event_toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:minHeight="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:contentInsetStart="@dimen/keyline_2"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+
+
+            </android.support.v7.widget.Toolbar>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:id="@+id/event_location"
+                android:layout_marginBottom="@dimen/keyline_1"
+                android:layout_marginLeft="@dimen/keyline_2"
+                android:layout_marginRight="@dimen/keyline_2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:id="@+id/event_start_and_end"
+                android:layout_marginBottom="@dimen/keyline_1"
+                android:layout_marginLeft="@dimen/keyline_2"
+                android:layout_marginRight="@dimen/keyline_2"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</com.makerfaireorlando.mforlando.Views.NotifyScrollView>

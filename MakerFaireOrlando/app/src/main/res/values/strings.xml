@@ -23,9 +23,13 @@
     <string name="map_floorcontrol_4">4</string>
 
     <!-- Maker Detail Strings -->
-    <string name="maker_detail_description_title">Description</string>
+    <string name="description_title">Description</string>
     <string name="maker_detail_meet_title">About the Maker</string>
     <string name="project_additional_photos">Photos</string>
+
+    <string name="cost_title">Cost</string>
+    <string name="additional_info_title">Additional Info</string>
+    <string name="duration_title">Duration</string>
 
     <string name="calendar_key">AIzaSyA61W-6NtoTuAcO8TVqYOyFAJ2Hj6mhUB0</string>
 </resources>
